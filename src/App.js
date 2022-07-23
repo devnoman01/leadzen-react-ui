@@ -41,6 +41,7 @@ function App() {
             itemPerPage={itemPerPage}
             totalItems={data.length}
             paginate={paginate}
+            currentPage={currentPage}
           />
         </div>
       </div>

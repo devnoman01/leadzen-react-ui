@@ -9,12 +9,15 @@ const Pagination = ({ itemPerPage, totalItems, paginate, currentPage }) => {
     pageNumbers.push(i);
   }
 
+  // load previous page data
   const previousPage = () => {
     if (activePageNumber != 1) {
       activePageNumber--;
       paginate(activePageNumber);
     }
   };
+
+  // load next page data
   const nextPage = () => {
     if (activePageNumber != totalPage) {
       activePageNumber++;
@@ -47,12 +50,14 @@ const Pagination = ({ itemPerPage, totalItems, paginate, currentPage }) => {
               />
             </svg>
           </a>
+
+          {/* page number buttons */}
           {pageNumbers.map((number) => (
             <li key={number}>
               <a
                 onClick={() => {
+                  activePageNumber = number;
                   paginate(number);
-                  activePageNumber(number);
                 }}
                 href="#"
                 className={`${
@@ -63,6 +68,7 @@ const Pagination = ({ itemPerPage, totalItems, paginate, currentPage }) => {
               </a>
             </li>
           ))}
+
           {/* next page */}
           <a
             onClick={() => nextPage()}

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
 import DataRow from "./Components/DataRow/DataRow";
+import Pagination from "./Components/DataRow/Pagination";
 
 function App() {
   const [data, setData] = useState([]);
@@ -18,21 +19,29 @@ function App() {
       });
   }, []);
 
-  // get current posts
-  // const indexOfLastItem = currentPage * itemPerPage;
-  // const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  // const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  // get limited data
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  // change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
       <div className="w-full bg-[#F4F7FC]">
-        <div className="container border py-8 mx-auto">
-          <div className="bg-gray-100 px-3 py-4 border">
+        <div className="container py-8 mx-auto">
+          <div className="px-3 py-4">
             {/* data row */}
-            {data.map((item, index) => (
+            {currentItems.map((item, index) => (
               <DataRow key={index} item={item} />
             ))}
           </div>
+          <Pagination
+            itemPerPage={itemPerPage}
+            totalItems={data.length}
+            paginate={paginate}
+          />
         </div>
       </div>
     </>

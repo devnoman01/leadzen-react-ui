@@ -39,7 +39,7 @@ const DataRow = ({ item }) => {
           <h5 className="font-semibold mb-1">MASS</h5>
           <p>{mass}</p>
         </div>
-        <div className="w-full h-full flex justify-center mt-3 md:mt-0 md:justify-end items-center">
+        <div className="w-full h-full flex justify-center mt-3 md:mt-0 items-center">
           {detailView ? (
             <button
               onClick={() => setDetailView(!detailView)}
